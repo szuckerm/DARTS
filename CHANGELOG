@@ -1,0 +1,1 @@
+2015-03-18: Added FastMergesort as a new benchmark; added an inline member function to the Codelet class (void add()).
