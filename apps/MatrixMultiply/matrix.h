@@ -35,13 +35,31 @@
 #include <assert.h>
 
 #ifdef MKL
-#include <mkl_cblas.h>
-#define INT MKL_INT
-#define DGEMM(i, j, k, alpha, aPtr, aSize, bPtr, bSize, beta, cPtr, cSize) cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, i, j, k, alpha, aPtr, aSize, bPtr, bSize, beta, cPtr, cSize)
-#else
-#include "/opt/shared/ACML/5.3.0/gfortran64_fma4/include/acml.h"
-#define INT int
-#define DGEMM(i, j, k, alpha, aPtr, aSize, bPtr, bSize, beta, cPtr, cSize) dgemm('T', 'T', i, j, k, alpha, aPtr, aSize, bPtr, bSize, beta, cPtr, cSize)
+#   include <mkl_cblas>
+#   define INT MKL_INT
+#   define DGEMM(i, j, k, alpha, aPtr, aSize, bPtr, bSize, beta, cPtr, cSize) \
+           cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, \
+                       i, j, k, \
+                       alpha, aPtr, aSize, bPtr, bSize, beta, cPtr, cSize)
+#else 
+#   define INT int
+#   ifdef ACML
+#       include "/opt/shared/ACML/5.3.0/gfortran64_fma4/include/acml.h"
+#       define DGEMM(i, j, k, alpha, aPtr, aSize, bPtr, bSize, beta, cPtr, cSize) \
+               dgemm('T', 'T', \
+                     i, j, k, \
+                     alpha, aPtr, aSize, bPtr, bSize, beta, cPtr, cSize)
+#   else
+#   define DGEMM(i, j, k, alpha, aPtr, aSize, bPtr, bSize, beta, cPtr, cSize) \
+           cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, \
+                       i, j, k, \
+                       alpha, aPtr, aSize, bPtr, bSize, beta, cPtr, cSize)
+#       ifdef ATLAS
+#           include <cblas.h>
+#       else
+#           include "cblas_dgemm.h"
+#       endif
+#   endif
 #endif
 
 class matrix
