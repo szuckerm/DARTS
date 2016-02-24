@@ -26,6 +26,7 @@
  */
 
 
+#include <unistd.h>
 #include "MSchedPolicy.h"
 #include "MicroScheduler.h"
 #include "TPScheduler.h"
@@ -41,6 +42,8 @@ namespace darts
     void
     MicroStandard::policy(void)
     {
+        useconds_t usecs = 1, 
+                   range = 1;
 #ifdef TRACE
         addRecord(getTime(), (void*) &MicroStandard::policy);
 #endif
@@ -50,6 +53,7 @@ namespace darts
 
             while (tempCodelet)
             {
+                usecs = range; // reset sleep time
                 ThreadedProcedure * checkTP = tempCodelet->getTP();
                 //Does our codelet have a TP (not final codelet)
                 //If yes then does that TP have a parent (means not a serial loop)
@@ -78,12 +82,19 @@ namespace darts
 
                 tempCodelet = popCodelet();
             }
+
+            if (!tempCodelet) {
+                usleep(usecs);
+                usecs += range;
+            }
         }
     }
     
     void
     MicroStatic::policy(void)
     {
+        useconds_t usecs = 1,
+                   range = 1;
 #ifdef TRACE
         addRecord(getTime(), (void*) &MicroStatic::policy);
 #endif
@@ -93,6 +104,7 @@ namespace darts
 
             while (tempCodelet)
             {
+                usecs = range; // reset sleep time
                 ThreadedProcedure * checkTP = tempCodelet->getTP();
                 //Does our codelet have a TP (not final codelet)
                 //If yes then does that TP have a parent (means not a serial loop)
@@ -120,12 +132,18 @@ namespace darts
                 }
                 tempCodelet = popCodelet();
             }
+            if (!tempCodelet) {
+                usleep(usecs);
+                usecs += range;
+            }
         }
     }
     
     void
     MicroDynamic::policy()
     {
+        useconds_t usecs = 1, 
+                   range = 1;
 #ifdef TRACE
         addRecord(getTime(), (void*) &MicroDynamic::policy);
 #endif 
@@ -137,6 +155,7 @@ namespace darts
 
             while (tempCodelet)
             {
+                usecs = range; // reset sleep time
                 ThreadedProcedure * checkTP = tempCodelet->getTP();
                 //Does our codelet have a TP (not final codelet)
                 //If yes then does that TP have a parent (means not a serial loop)
@@ -165,12 +184,19 @@ namespace darts
 
                 tempCodelet = myTPSched->popCodelet();
             }
+
+            if (!tempCodelet) {
+                usleep(usecs);
+                usecs += range;
+            }
         }
     }
     
     void
     MicroSteal::policy()
     {
+        useconds_t usecs = 1, 
+                   range = 1;
 #ifdef TRACE
         addRecord(getTime(), (void*) &MicroSteal::policy);
 #endif 
@@ -182,6 +208,7 @@ namespace darts
 
             if(tempCodelet)
             {
+                usecs = range; // reset sleep time
                 ThreadedProcedure * checkTP = tempCodelet->getTP();
                 bool deleteTP = (checkTP) ? checkTP->checkParent() : false;
 
@@ -203,6 +230,9 @@ namespace darts
                     if (checkTP->decRef())
                         delete checkTP;
                 }
+            } else { 
+                usleep(usecs);
+                usecs += range;
             }
         }
     }
