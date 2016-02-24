@@ -26,6 +26,7 @@
  */
 
 
+#include <unistd.h>
 #include "TPSchedPolicy.h"
 #include "TPScheduler.h"
 #include "Codelet.h"
@@ -40,6 +41,8 @@ namespace darts {
 
     void
     TPRoundRobin::policy() {
+        useconds_t usecs = 1,
+                   range = 1;
 #ifdef TRACE
         addRecord(getTime(), (void*) &TPRoundRobin::policy);
 #endif       
@@ -50,6 +53,7 @@ namespace darts {
                 tempClosure = steal();
 
             if (tempClosure) {
+                usecs = range; // reset sleep time
 #ifdef TRACE
                 addRecord(getTime(), (void*) tempClosure->factory);
 #endif
@@ -59,6 +63,10 @@ namespace darts {
 #endif
                 delete tempClosure;
                 //Get the work ready!
+            } else {
+                usleep(usecs);
+                if (usecs < 500)
+                    usecs *= 2;
             }
             //Lets do the work!
             Codelet * tempCodelet = popCodelet();
@@ -74,6 +82,8 @@ namespace darts {
 
     void
     TPPushFull::policy() {
+        useconds_t usecs = 1, 
+                   range = 1;
 #ifdef TRACE
         addRecord(getTime(), (void*) &TPPushFull::policy);
 #endif
@@ -84,6 +94,7 @@ namespace darts {
                 tempClosure = steal();
 
             if (tempClosure) {
+                usecs = range; // reset sleep time
 #ifdef TRACE
                 addRecord(getTime(), (void*) tempClosure->factory);
 #endif
@@ -93,7 +104,11 @@ namespace darts {
 #endif
                 delete tempClosure;
                 //Get the work ready!
-            }
+            } else {
+                usleep(usecs);
+                if (usecs < 500)
+                    usecs *= 2;
+           }
             //Lets do the work!
             Codelet * tempCodelet = popCodelet();
             while (tempCodelet) {
@@ -135,6 +150,8 @@ namespace darts {
 
     void
     TPStatic::policy() {
+        useconds_t usecs = 1, 
+                   range = 1;
 #ifdef TRACE
         addRecord(getTime(), (void*) &TPStatic::policy);
 #endif
@@ -145,6 +162,7 @@ namespace darts {
                 tempClosure = steal();
 
             if (tempClosure) {
+                usecs = range; // reset sleep time
 #ifdef TRACE
                 addRecord(getTime(), (void*) tempClosure->factory);
 #endif
@@ -154,7 +172,11 @@ namespace darts {
 #endif
                 delete tempClosure;
                 //Get the work ready!
-            }
+            } else {
+                usleep(usecs);
+                if (usecs < 500)
+                    usecs *= 2;
+           }
 
             Codelet * tempCodelet = popCodelet();
             while (tempCodelet) {
@@ -197,6 +219,8 @@ namespace darts {
 
     void
     TPDynamic::policy() {
+        useconds_t usecs = 1, 
+                   range = 1;
 #ifdef TRACE
         addRecord(getTime(), (void*) &TPDynamic::policy);
 #endif
@@ -207,7 +231,7 @@ namespace darts {
                 tempClosure = steal();
 
             if (tempClosure) {
-
+                usecs = range; // reset sleep time;
 #ifdef TRACE
                 addRecord(getTime(), (void*) tempClosure->factory);
 #endif
@@ -217,7 +241,11 @@ namespace darts {
 #endif
                 delete tempClosure;
                 //Get the work ready!
-            }
+            } else {
+                usleep(usecs);
+                if (usecs < 500)
+                    usecs *= 2;
+           }
 
             //Lets do the work!
             Codelet * tempCodelet = popCodelet();
@@ -249,6 +277,8 @@ namespace darts {
 
     void
     TPWorkPush::policy() {
+        useconds_t usecs = 1,
+                   range = 1;
 #ifdef TRACE
         addRecord(getTime(), (void*) &TPWorkPush::policy);
 #endif
@@ -257,6 +287,7 @@ namespace darts {
             tpClosure * tempClosure = popTP();
 
             if (tempClosure) {
+                usecs = range; // reset sleep time
 #ifdef TRACE
                 addRecord(getTime(), (void*) tempClosure->factory);
 #endif
@@ -266,7 +297,11 @@ namespace darts {
 #endif
                 delete tempClosure;
                 //Get the work ready!
-            }
+            } else {
+                usleep(usecs);
+                if (usecs < 500)
+                    usecs *= 2;
+           }
             //Lets do the work!
             Codelet * tempCodelet = popCodelet();
             while (tempCodelet) {
