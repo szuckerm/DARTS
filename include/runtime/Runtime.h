@@ -93,7 +93,14 @@ namespace darts
         bool usePapi(void) { return papi_; }
         bool checkTP(void) { return (tpcount_); }
         bool checkMC(void) { return (mccount_); }
-        void spin(void) { while(spin_); }
+        void spin(void) const { 
+            useconds_t usecs = 10, range = 10;
+            while(spin_) {
+                usleep(usecs);
+                usecs += range;
+            }
+        }
+
         void linkTPSched(void);
         void linkMCSched(void);       
     };
