@@ -38,8 +38,12 @@
 #define INNERLOOP 10
 #define OUTERLOOP 10
 
-#define MAX(x,y) (x>y) ? x : y
-#define MIN(x,y) (x<y) ? x : y
+#ifndef MAX
+	#define MAX(x,y) (x>y) ? x : y
+#endif
+#ifndef MIN
+	#define MIN(x,y) (x<y) ? x : y
+#endif
 
 using namespace darts;
 

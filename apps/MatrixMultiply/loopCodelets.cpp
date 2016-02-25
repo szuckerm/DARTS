@@ -32,7 +32,9 @@
 #include <assert.h>
 
 #define MYTP(X) X * my##X = static_cast<X*>(myTP_)
-#define MIN(X,Y) (X < Y) ? (X) : (Y)
+#ifndef MIN
+	#define MIN(X,Y) (X < Y) ? (X) : (Y)
+#endif
 #define SCRATCH 524288
 
 using namespace darts;
