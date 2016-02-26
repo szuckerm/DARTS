@@ -117,14 +117,13 @@ endif()
 set (CMAKE_CXX_FLAGS_DEBUG "-g -pg")
 set (CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 
-set (CMAKE_C_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++11")
-set (CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-std=c11")
-
 ## Compiler flags
 if( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
-    set( CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-Wall -fopenmp -Wextra -Werror -Wno-pmf-conversions" )
+    set( CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-g -std=c++11 -Wall -Wextra -Werror -Wno-pmf-conversions" )
+    set( CMAKE_C_FLAGS ${CMAKE_C_FLAGS}     "-g -std=c11 -Wall -Wextra -Werror" )
 elseif( ${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang" )
-    set( CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-Wall -Wextra -Werror " )
+    set( CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-g -std=c++11 -Wall -Wextra -Werror " )
+    set( CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-g -std=c11 -Wall -Wextra -Werror " )
 elseif( ${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC" )
     set( CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "/W3 /wd4995" )
 else()
