@@ -114,8 +114,10 @@ message("Release Version")
 set (CMAKE_BUILD_TYPE "RELEASE")
 endif()
 
-set (CMAKE_CXX_FLAGS_DEBUG "-g -pg")
-set (CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
+set (CMAKE_CXX_FLAGS_DEBUG "-g -pg -marm")
+set (CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -marm")
+
+set (CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-std=c11")
 
 ## Compiler flags
 if( ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" )
