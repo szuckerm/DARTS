@@ -14,6 +14,21 @@ cblas_dgemm(const enum CBLAS_ORDER Order,
             const double *B,     const int  ldb,
             const double  beta,  double    *C,   const int ldc)
 {
+    assert( Order  == CblasRowMajor );
+    assert( TransA ==  CblasNoTrans );
+    assert( TransB ==  CblasNoTrans );
+    assert( K      ==           lda );
+    assert( N      ==           ldb );
+    assert( N      ==           ldc );
+#ifdef NDEBUG
+    (void) Order;
+    (void) TransA;
+    (void) TransB;
+    (void) lda;
+    (void) ldb;
+    (void) ldc;
+#endif
+
     double (*a)[K] = (double (*)[K]) A;
     double (*b)[N] = (double (*)[N]) B;
     double (*c)[N] = (double (*)[N]) C;
