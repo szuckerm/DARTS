@@ -73,6 +73,11 @@ namespace darts
     private:
         uint64_t id_;
         volatile bool alive_;
+        
+        Scheduler** runtimeTPSchedulers;
+        uint64_t numTPSched;
+        uint64_t numMCSched;
+        
 	ThreadAffinity * affin_;
 	
 #ifdef TRACE
@@ -170,6 +175,42 @@ namespace darts
         }
 
 #endif
+
+        /*Set the pointer to the runtime TPSchedulers*/
+        inline void setRuntimeTPScheds( Scheduler** TPSched_)
+        {
+          this->runtimeTPSchedulers = TPSched_;
+        }
+
+        /*Get a runtime TPScheduler*/
+        inline Scheduler* getRuntimeTPSched(uint64_t num)
+        {
+          return this->runtimeTPSchedulers[num];
+        }
+        
+        /*Set the number of runtime TPSchedulers*/
+        inline void setNumTPSched(uint64_t num)
+        {
+          this->numTPSched = num;
+        }
+        
+        /*Get the number of runtime TPSchedulers*/
+        inline uint64_t getNumTPSched()
+        {
+          return numTPSched;
+        }
+        
+        /*Set the number of runtime MCSchedulers*/
+        inline void setNumMCSched(uint64_t num)
+        {
+          this->numMCSched = num;
+        }
+        
+        /*Get the number of runtime MCSchedulers*/
+        inline uint64_t getNumMCSched()
+        {
+          return numMCSched;
+        }
         
     };    
 }

@@ -2243,6 +2243,869 @@ namespace darts {
                 A26, A27, A28, A29, A30,
                 A31, A32);
     }
+    
+    
+    template<class newTP>
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory<newTP>;
+        tpClosure * closure = new tpClosure(funct, parentTP);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1)
+    { 
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1 >;
+        tpClosure * closure = new tpClosure1< arg1 > (funct, parentTP, A1);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2 >;
+        tpClosure * closure = new tpClosure2< arg1, arg2 > (funct, parentTP, A1, A2);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+
+    template<class newTP, class arg1, class arg2, class arg3 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3 >;
+        tpClosure * closure = new tpClosure3< arg1, arg2, arg3 > (funct, parentTP, A1, A2, A3);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4 >;
+        tpClosure * closure = new tpClosure4< arg1, arg2, arg3, arg4 > (funct, parentTP, A1, A2, A3, A4);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5 >;
+        tpClosure * closure = new tpClosure5< arg1, arg2, arg3, arg4, arg5 > (funct, parentTP, A1, A2, A3, A4, A5);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6)
+    {      
+      parentTP->incRef();
+      tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5, arg6 >;
+      tpClosure * closure = new tpClosure6< arg1, arg2, arg3, arg4, arg5, arg6 > (funct, parentTP, A1, A2, A3, A4, A5, A6);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7 >;
+        tpClosure * closure = new tpClosure7< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8 >;
+        tpClosure * closure = new tpClosure8< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9 >;
+        tpClosure * closure = new tpClosure9< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10 >;
+        tpClosure * closure = new tpClosure10< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11 >;
+        tpClosure * closure = new tpClosure11< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12 >;
+        tpClosure * closure = new tpClosure12< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13 >;
+        tpClosure * closure = new tpClosure13< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14 >;
+        tpClosure * closure = new tpClosure14< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15 >;
+        tpClosure * closure = new tpClosure15< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16 >;
+        tpClosure * closure = new tpClosure16< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17 >;
+        tpClosure * closure = new tpClosure17< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18 >;
+        tpClosure * closure = new tpClosure18< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19 >;
+        tpClosure * closure = new tpClosure19< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20 >;
+        tpClosure * closure = new tpClosure20< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21 >;
+        tpClosure * closure = new tpClosure21< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21, class arg22 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21, arg22 A22)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22 >;
+        tpClosure * closure = new tpClosure22< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21, A22);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21, class arg22, class arg23 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21, arg22 A22, arg23 A23)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23 >;
+        tpClosure * closure = new tpClosure23< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21, A22, A23);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21, class arg22, class arg23, class arg24 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21, arg22 A22, arg23 A23, arg24 A24)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24 >;
+        tpClosure * closure = new tpClosure24< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21, A22, A23, A24);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21, class arg22, class arg23, class arg24, class arg25 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21, arg22 A22, arg23 A23, arg24 A24, arg25 A25)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25 >;
+        tpClosure * closure = new tpClosure25< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21, A22, A23, A24, A25);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21, class arg22, class arg23, class arg24, class arg25,
+    class arg26 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21, arg22 A22, arg23 A23, arg24 A24, arg25 A25,
+    arg26 A26)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26 >;
+        tpClosure * closure = new tpClosure26< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21, A22, A23, A24, A25,
+                A26);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21, class arg22, class arg23, class arg24, class arg25,
+    class arg26, class arg27 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21, arg22 A22, arg23 A23, arg24 A24, arg25 A25,
+    arg26 A26, arg27 A27)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27 >;
+        tpClosure * closure = new tpClosure27< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21, A22, A23, A24, A25,
+                A26, A27);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21, class arg22, class arg23, class arg24, class arg25,
+    class arg26, class arg27, class arg28 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21, arg22 A22, arg23 A23, arg24 A24, arg25 A25,
+    arg26 A26, arg27 A27, arg28 A28)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27, arg28 >;
+        tpClosure * closure = new tpClosure28< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27, arg28 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21, A22, A23, A24, A25,
+                A26, A27, A28);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21, class arg22, class arg23, class arg24, class arg25,
+    class arg26, class arg27, class arg28, class arg29 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21, arg22 A22, arg23 A23, arg24 A24, arg25 A25,
+    arg26 A26, arg27 A27, arg28 A28, arg29 A29)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27, arg28, arg29 >;
+        tpClosure * closure = new tpClosure29< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27, arg28, arg29 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21, A22, A23, A24, A25,
+                A26, A27, A28, A29);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21, class arg22, class arg23, class arg24, class arg25,
+    class arg26, class arg27, class arg28, class arg29, class arg30 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21, arg22 A22, arg23 A23, arg24 A24, arg25 A25,
+    arg26 A26, arg27 A27, arg28 A28, arg29 A29, arg30 A30)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27, arg28, arg29, arg30 >;
+        tpClosure * closure = new tpClosure30< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27, arg28, arg29, arg30 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21, A22, A23, A24, A25,
+                A26, A27, A28, A29, A30);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21, class arg22, class arg23, class arg24, class arg25,
+    class arg26, class arg27, class arg28, class arg29, class arg30,
+    class arg31 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21, arg22 A22, arg23 A23, arg24 A24, arg25 A25,
+    arg26 A26, arg27 A27, arg28 A28, arg29 A29, arg30 A30,
+    arg31 A31)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27, arg28, arg29, arg30,
+                arg31 >;
+        tpClosure * closure = new tpClosure31< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27, arg28, arg29, arg30,
+                arg31 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21, A22, A23, A24, A25,
+                A26, A27, A28, A29, A30,
+                A31);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+    
+    template<class newTP, class arg1, class arg2, class arg3, class arg4, class arg5,
+    class arg6, class arg7, class arg8, class arg9, class arg10,
+    class arg11, class arg12, class arg13, class arg14, class arg15,
+    class arg16, class arg17, class arg18, class arg19, class arg20,
+    class arg21, class arg22, class arg23, class arg24, class arg25,
+    class arg26, class arg27, class arg28, class arg29, class arg30,
+    class arg31, class arg32 >
+    void
+    place(uint64_t targetTPSnum, ThreadedProcedure * parentTP, arg1 A1, arg2 A2, arg3 A3, arg4 A4, arg5 A5,
+    arg6 A6, arg7 A7, arg8 A8, arg9 A9, arg10 A10,
+    arg11 A11, arg12 A12, arg13 A13, arg14 A14, arg15 A15,
+    arg16 A16, arg17 A17, arg18 A18, arg19 A19, arg20 A20,
+    arg21 A21, arg22 A22, arg23 A23, arg24 A24, arg25 A25,
+    arg26 A26, arg27 A27, arg28 A28, arg29 A29, arg30 A30,
+    arg31 A31, arg32 A32)
+    {
+        parentTP->incRef();
+        tpfactory funct = &TPFactory< newTP, arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27, arg28, arg29, arg30,
+                arg31, arg32 >;
+        tpClosure * closure = new tpClosure32< arg1, arg2, arg3, arg4, arg5,
+                arg6, arg7, arg8, arg9, arg10,
+                arg11, arg12, arg13, arg14, arg15,
+                arg16, arg17, arg18, arg19, arg20,
+                arg21, arg22, arg23, arg24, arg25,
+                arg26, arg27, arg28, arg29, arg30,
+                arg31, arg32 > (funct, parentTP, A1, A2, A3, A4, A5,
+                A6, A7, A8, A9, A10,
+                A11, A12, A13, A14, A15,
+                A16, A17, A18, A19, A20,
+                A21, A22, A23, A24, A25,
+                A26, A27, A28, A29, A30,
+                A31, A32);
+
+        uint64_t TPSnum = targetTPSnum % (myThread.threadTPsched->getNumTPSched());
+        TPScheduler* targetTPsched = static_cast<TPScheduler*>(myThread.threadTPsched->getRuntimeTPSched(TPSnum));
+        targetTPsched->pushTP(closure);
+    }
+
 }
 #endif	/* invoke_H */
 
